@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Hank Andre",
   "license": "MIT",
+  "engines": {
+    "node": "7.9.0"
+  },
   "scripts": {
     "start": "NODE_ENV=production micro index.js",
     "start-dev": "micro index.js"
