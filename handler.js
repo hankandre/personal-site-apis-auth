@@ -14,6 +14,7 @@ module.exports = {
 
 async function add ({res, body: {username, password}}) {
   if (!username || !password) send(res, 400, 'You must send a username and password')
+  console.log(await User.findOne({username: username}))
   try {
     const user = new User({
       username: username,
@@ -27,10 +28,12 @@ async function add ({res, body: {username, password}}) {
 }
 
 async function auth ({res, body: {username, password}}) {
+  console.log(username)
   try {
     const user = await User.findOne({username: username})
-    if (await comparePassword(password, password)) {
-      return {token: jwt.sign(user, JWT_SECRET)}
+    console.log(await comparePassword(password, password))
+    if (await comparePassword(password, user.password)) {
+      return {token: jwt.sign(username, JWT_SECRET)}
     } else {
       return {error: 'User not found'}
     }
