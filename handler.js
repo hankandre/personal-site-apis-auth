@@ -19,8 +19,8 @@ async function add ({res, body: {username, password}}) {
       username: username,
       password: password
     })
-    const doc = await user.save()
-    return doc
+    await user.save()
+    return `user ${username} saved successfully`
   } catch (err) {
     send(res, 400, {error: err})
   }
