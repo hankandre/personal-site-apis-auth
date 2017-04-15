@@ -20,7 +20,7 @@ async function add ({res, body: {username, password}}) {
       password: password
     })
     await user.save()
-    return `user ${username} saved successfully`
+    return { message: `User ${username} saved successfully` }
   } catch (err) {
     send(res, 400, {error: err})
   }
