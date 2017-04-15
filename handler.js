@@ -14,7 +14,9 @@ module.exports = {
 
 async function add ({res, body: {username, password}}) {
   if (!username || !password) send(res, 400, 'You must send a username and password')
-  console.log(await User.findOne({username: username}))
+  // const userExists = await User.findOne({ username: username })
+  // console.log(userExists)
+  // if (userExists) send(res, 403, { error: `User ${username} already exists` })
   try {
     const user = new User({
       username: username,
@@ -23,6 +25,8 @@ async function add ({res, body: {username, password}}) {
     await user.save()
     return { message: `User ${username} saved successfully` }
   } catch (err) {
+    console.log(err.name)
+    if (err.name === 'MongoError') send(res, 400, { error: err.errmsg })
     send(res, 400, {error: err})
   }
 }
