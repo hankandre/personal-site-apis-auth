@@ -6,13 +6,6 @@ const comparePassword = promisify(require('bcrypt').compare)
 const User = require('./UserSchema')
 const JWT_SECRET = process.env.JWT_SECRET
 
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Request-Method': '*',
-  'Access-Control-Allow-Methods': 'POST, PUT',
-  'Access-Control-Allow-Headers': '*'
-}
-
 module.exports = {
   add,
   auth,
@@ -20,11 +13,10 @@ module.exports = {
 }
 
 async function add ({res, body: {username, password}}) {
-  res.headers = headers
   if (!username || !password) send(res, 400, 'You must send a username and password')
-  // const userExists = await User.findOne({ username: username })
-  // console.log(userExists)
-  // if (userExists) send(res, 403, { error: `User ${username} already exists` })
+  const userExists = await User.findOne({ username: username })
+  console.log(userExists)
+  if (userExists) send(res, 403, { error: `User ${username} already exists` })
   try {
     const user = new User({
       username: username,
@@ -40,7 +32,6 @@ async function add ({res, body: {username, password}}) {
 }
 
 async function auth ({res, body: {username, password}}) {
-  res.headers = headers
   console.log(username)
   try {
     const user = await User.findOne({username: username})
@@ -56,7 +47,6 @@ async function auth ({res, body: {username, password}}) {
 }
 
 async function update ({res, req: {headers: {authentication}}, body}) {
-  res.headers = headers
   try {
     const token = authentication.split(' ')[1]
     await jwt.verify(token, JWT_SECRET)

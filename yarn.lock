@@ -1516,6 +1516,13 @@ micro-api@^0.1.6:
     uniloc "^0.3.0"
     uuid "^3.0.1"
 
+micro-cors@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/micro-cors/-/micro-cors-0.0.4.tgz#d3f4210fd2c5e59ce2d1715c101ade201f3d0a43"
+  dependencies:
+    request "^2.81.0"
+    request-promise "^4.2.0"
+
 micro@^7.3.2:
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/micro/-/micro-7.3.2.tgz#c6ff82fad6b045cfe04cbc673834ef1fc3dc13aa"

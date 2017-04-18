@@ -25,6 +25,7 @@
     "jsonwebtoken": "^7.3.0",
     "micro": "^7.3.2",
     "micro-api": "^0.1.6",
+    "micro-cors": "^0.0.4",
     "mongoose": "^4.9.4"
   }
 }

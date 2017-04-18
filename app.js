@@ -1,8 +1,10 @@
 'use strict'
 const microApi = require('micro-api')
 const handler = require('./handler')
+const microCors = require('micro-cors')
+const cors = microCors({allowMethods: ['PUT', 'POST']})
 
-const app = microApi([
+const app = cors(microApi([
   {
     method: 'post',
     path: '/auth',
@@ -18,6 +20,6 @@ const app = microApi([
     path: '/',
     handler: handler.auth
   }
-])
+]))
 
 module.exports = app
