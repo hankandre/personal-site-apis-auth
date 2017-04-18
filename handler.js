@@ -6,6 +6,13 @@ const comparePassword = promisify(require('bcrypt').compare)
 const User = require('./UserSchema')
 const JWT_SECRET = process.env.JWT_SECRET
 
+function setHeaders (res) {
+  res.setHeaders('Access-Control-Allow-Origin', '*')
+  res.setHeaders('Access-Control-Request-Method', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, PUT')
+  return res.setHeader('Access-Control-Allow-Headers', '*')
+}
+
 module.exports = {
   add,
   auth,
