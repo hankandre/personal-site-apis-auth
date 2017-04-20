@@ -25,7 +25,6 @@ async function add ({res, body: {username, password}}) {
     await user.save()
     return { message: `User ${username} saved successfully` }
   } catch (err) {
-    console.log(err.name)
     if (err.name === 'MongoError') send(res, 400, { error: err.errmsg })
     send(res, 400, {error: err})
   }
@@ -39,7 +38,7 @@ async function auth ({res, body: {username, password}}) {
     if (await comparePassword(password, user.password)) {
       return {token: jwt.sign(username, JWT_SECRET)}
     } else {
-      return {error: 'User not found'}
+      send(res, 404, {error: 'User not found'})
     }
   } catch (err) {
     send(res, 404, {error: err})
