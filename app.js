@@ -18,7 +18,7 @@ const app = cors(microApi([
   {
     method: 'post',
     path: '/',
-    handler: handler.auth
+    handler: handler.authenticate
   }
 ]))
 
