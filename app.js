@@ -1,25 +1,26 @@
 'use strict'
 const microApi = require('micro-api')
-const handler = require('./handler')
+const handlers = require('./handlers')
 const microCors = require('micro-cors')
 const cors = microCors({allowMethods: ['PUT', 'POST']})
 
-const app = cors(microApi([
+module.exports = cors(microApi([
   {
+    // Adds a user to the DB
     method: 'post',
     path: '/auth',
-    handler: handler.add
+    handler: handlers.add
   },
   {
+    // Updates a user in the DB
     method: 'put',
     path: '/',
-    handler: handler.update
+    handler: handlers.update
   },
   {
+    // Authenticates a user
     method: 'post',
     path: '/',
-    handler: handler.authenticate
+    handler: handlers.authenticate
   }
 ]))
-
-module.exports = app
