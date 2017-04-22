@@ -13,6 +13,6 @@ module.exports = async ({res, req: {headers: {authentication}}, body}) => {
     const user = await User.findByIdAndUpdate(body._id, body)
     return user
   } catch (err) {
-    send(res, 404, {error: err})
+    return send(res, 404, {error: err})
   }
 }

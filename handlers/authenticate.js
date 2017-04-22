@@ -11,11 +11,15 @@ module.exports = async ({res, body: {username, password}}) => {
   try {
     const user = await User.findOne({username: username})
     if (await comparePassword(password, user.password)) {
-      return {token: jwt.sign(username, JWT_SECRET)}
+      return {token: jwt.sign(user, JWT_SECRET),
+        user: {
+          _id: user._id,
+          username: user.username
+        }}
     } else {
-      send(res, 404, {error: 'User not found'})
+      return send(res, 404, {error: 'User not found'})
     }
   } catch (err) {
-    send(res, 404, {error: err})
+    return send(res, 404, {error: err})
   }
 }

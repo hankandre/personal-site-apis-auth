@@ -3,10 +3,10 @@ const { send } = require('micro')
 const User = require('../UserSchema')
 
 module.exports = async ({res, body: {username, password}}) => {
-  if (!username || !password) send(res, 400, 'You must send a username and password')
+  if (!username || !password) return send(res, 400, 'You must send a username and password')
   const userExists = await User.findOne({ username: username })
   // if the user already exists send a 403
-  if (userExists) send(res, 403, { error: `User ${username} already exists` })
+  if (userExists) return send(res, 403, { error: `User ${username} already exists` })
   try {
     const user = new User({
       username,
@@ -16,6 +16,6 @@ module.exports = async ({res, body: {username, password}}) => {
     return { message: `User ${username} saved successfully` }
   } catch (err) {
     if (err.name === 'MongoError') send(res, 400, { error: err.errmsg })
-    send(res, 400, {error: err})
+    return send(res, 400, {error: err})
   }
 }

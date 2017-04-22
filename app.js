@@ -18,6 +18,11 @@ module.exports = cors(microApi([
     handler: handlers.update
   },
   {
+    method: 'post',
+    path: '/confirm',
+    handler: handlers.check
+  },
+  {
     // Authenticates a user
     method: 'post',
     path: '/',
