@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 
 // Authenticates user and sends JWT or responds with error
 module.exports = async ({res, body: {username, password}}) => {
+  console.log('/authenticate')
   try {
     const user = await User.findOne({username: username})
     if (await comparePassword(password, user.password)) {

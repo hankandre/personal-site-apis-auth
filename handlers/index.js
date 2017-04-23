@@ -2,10 +2,10 @@
 const add = require('./add')
 const authenticate = require('./authenticate')
 const update = require('./update')
-const check = require('./check')
+const confirm = require('./confirm')
 module.exports = {
   add,
   authenticate,
   update,
-  check
+  confirm
 }
