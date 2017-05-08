@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken')
 const verify = promisify(jwt.verify)
 
 // Authenticates user and sends JWT or responds with error
-module.exports = async ({res, body: {token}}) => {
-  console.log('In /confirm')
+module.exports = async ({res, headers: {authorization}}) => {
   try {
+    const token = authorization.split(' ').pop()
     const decrypted = await verify(token, JWT_SECRET)
     if (decrypted) return 'verified'
     return send(res, 404, {error: 'not verified'})
