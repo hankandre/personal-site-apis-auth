@@ -1,0 +1,13 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:shelljs:20140723':
+    - micro-api > standard > eslint > shelljs:
+        reason: None given
+        expires: '2017-06-10T19:23:59.160Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:ms:20170412':
+    - bcrypt > node-pre-gyp > tar-pack > debug > ms:
+        patched: '2017-05-25T08:30:05.928Z'
