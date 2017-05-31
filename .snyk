@@ -11,3 +11,5 @@ patch:
   'npm:ms:20170412':
     - bcrypt > node-pre-gyp > tar-pack > debug > ms:
         patched: '2017-05-25T08:30:05.928Z'
+    - micro-api > standard > eslint-plugin-import > eslint-module-utils > debug > ms:
+        patched: '2017-05-31T14:19:10.467Z'
