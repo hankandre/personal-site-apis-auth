@@ -13,3 +13,6 @@ patch:
         patched: '2017-05-25T08:30:05.928Z'
     - micro-api > standard > eslint-plugin-import > eslint-module-utils > debug > ms:
         patched: '2017-05-31T14:19:10.467Z'
+  'npm:debug:20170905':
+    - mongoose > mquery > debug:
+        patched: '2017-09-28T02:28:07.622Z'
